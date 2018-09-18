@@ -1,60 +1,36 @@
-<template>
-	<div id="app">
-		<img src="./assets/logo.png">
-		<h1>{{ msg }}</h1>
-		<h2>Essential Links</h2>
-		<ul>
-			<li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-			<li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-			<li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-			<li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-		</ul>
-		<h2>Ecosystem</h2>
-		<ul>
-			<li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-			<li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-			<li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-			<li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-		</ul>
-	</div>
-</template>
-
 <script>
+import CcUsers from './components/users/main.vue'
+
 export default {
-	name: 'app',
-	data () {
-		return {
-			msg: 'Welcome to Your Vue.js App'
+	name: 'CodecastsApp',
+	mounted() {
+		const payload = {
+			name: 'Fabio Vedovelli',
+			email: 'vedovelli@gmail.com',
+			level: 'admin-da-desgraça-toda',
+		}
+		setTimeout(() => {
+			this.$store.commit('CHANGE_USER', payload)
+		}, 3000)
+	},
+	components: {
+		CcUsers
+	},
+	computed: {
+		user(){
+			const { name, email } = this.$store.state.user
+			return `O usuario logado é ${name} 
+				e possui o email ${email}.`
 		}
 	}
 }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-
-h1, h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>
+<template>
+	<div>
+		<h1>Welcome Vue2</h1>
+		<h4>{{ user }}</h4>
+		<hr>
+		<cc-users></cc-users>
+	</div>
+</template>

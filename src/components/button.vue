@@ -9,6 +9,11 @@ export default {
             }
             this.$store.commit('CHANGE_USER', payload)
         }
+    },
+    computed: {
+        hasUser() {
+            return this.$store.state.user.name !== ''
+        }
     }
 }
 </script>
@@ -16,6 +21,6 @@ export default {
 
 <template>
     <div>
-        <button @click="mudarDados">Mudar dados do usuário</button>
+        <button :disabled="!hasUser" @click="mudarDados">Mudar dados do usuário</button>
     </div>
 </template>

@@ -1,6 +1,6 @@
 <script>
 import CcUsers from './components/users/main.vue'
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
 	name: 'CodecastsApp',
@@ -9,13 +9,19 @@ export default {
 			name: 'Fabio Vedovelli',
 			email: 'vedovelli@gmail.com',
 			level: 'admin-da-desgraça-toda',
+			city: 'Santo André',
+			state: 'SP',
 		}
 		setTimeout(() => {
-			this.$store.commit('CHANGE_USER', payload)
+			this.changeUser(payload)
+			// this.$store.commit('CHANGE_USER', payload) //old version
 		}, 3000)
 	},
 	components: {
 		CcUsers
+	},
+	methods: {
+		...mapActions(['changeUser'])
 	},
 	computed: {
 		...mapState({

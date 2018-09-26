@@ -8,6 +8,9 @@ export default {
     computed: {
         email() {
             return this.$store.state.user.email
+        },
+        localidade() {
+            return this.$store.getters.localidade
         }
     }
 }
@@ -16,6 +19,7 @@ export default {
 <template>
     <div>
         Email: {{ email }}
+		<p>Localidade: {{ localidade }}</p>
         <cc-button></cc-button>
     </div>
 </template>
